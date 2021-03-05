@@ -54,7 +54,11 @@ Authorized users have the ability to create, update and delete posts which are a
 
 #### Wireframes
 
-![landing](/assets/landing-page.png)
+![landing](/assets/home.png)
+
+- Desktop Landing
+
+![articles](/assets/articles.png)
 
 - Desktop Landing
 
@@ -169,7 +173,7 @@ src
 
 #### ERD Model
 
-![ERD](/assets/ERD-model.png)
+![ERD](/assets/ERD.png)
 
 <br>
 

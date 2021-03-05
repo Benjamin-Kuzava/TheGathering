@@ -1,0 +1,9 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters {
+  background: white;
+  color: #292f3c;
+}

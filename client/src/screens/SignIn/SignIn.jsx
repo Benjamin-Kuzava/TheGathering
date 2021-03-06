@@ -77,6 +77,7 @@ const Login = (props) => {
             autoFocus
             value={username}
             onChange={handleChange}
+            color="secondary"
           />
           <TextField
             variant="standard"
@@ -90,6 +91,7 @@ const Login = (props) => {
             autoComplete="current-password"
             value={password}
             onChange={handleChange}
+            color="secondary"
           />
           <Button
             type="submit"

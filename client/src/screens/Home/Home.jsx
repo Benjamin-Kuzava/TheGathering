@@ -1,10 +1,11 @@
 import React from "react";
+import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import "./Home.css";
 
 const Home = () => {
   return (
     <div>
-      <h1>home</h1>
+      <ArticleCard />
     </div>
   );
 };

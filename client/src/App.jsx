@@ -1,12 +1,19 @@
-import { useMemo, useState } from "react";
+import { ThemeProvider } from "@material-ui/styles";
+import { useMemo, useState, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
 import MainContainer from "./containers/MainContainer/MainContainer";
 import SignIn from "./screens/SignIn/SignIn";
 import SignUp from "./screens/SignUp/SignUp";
-import { loginUser, registerUser, removeToken } from "./services/auth";
+import {
+  loginUser,
+  registerUser,
+  removeToken,
+  verifyUser,
+} from "./services/auth";
 import { UserContext } from "./utilities/UserContext";
+import { theme } from "./components/shared/Theme";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -18,6 +25,14 @@ function App() {
     [currentUser, setCurrentUser]
   );
   const history = useHistory();
+
+  useEffect(() => {
+    const handleVerify = async () => {
+      const currentUser = await verifyUser();
+      setCurrentUser(currentUser);
+    };
+    handleVerify();
+  }, []);
 
   const handleLogin = async (formData) => {
     const currentUser = await loginUser(formData);
@@ -38,21 +53,23 @@ function App() {
   };
 
   return (
-    <Layout>
-      <Switch>
-        <UserContext.Provider value={providerValue}>
-          <Route path="/login">
-            <SignIn handleLogin={handleLogin} />
-          </Route>
-          <Route path="/register">
-            <SignUp handleRegister={handleRegister} />
-          </Route>
-          <Route path="/">
-            <MainContainer />
-          </Route>
-        </UserContext.Provider>
-      </Switch>
-    </Layout>
+    <UserContext.Provider value={providerValue}>
+      <ThemeProvider theme={theme}>
+        <Layout handleLogout={handleLogout}>
+          <Switch>
+            <Route path="/login">
+              <SignIn handleLogin={handleLogin} />
+            </Route>
+            <Route path="/register">
+              <SignUp handleRegister={handleRegister} />
+            </Route>
+            <Route path="/">
+              <MainContainer />
+            </Route>
+          </Switch>
+        </Layout>
+      </ThemeProvider>
+    </UserContext.Provider>
   );
 }
 

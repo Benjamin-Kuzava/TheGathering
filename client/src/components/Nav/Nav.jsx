@@ -4,8 +4,9 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../../utilities/UserContext";
 import "./Nav.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,8 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Nav = () => {
+const Nav = (props) => {
+  const { currentUser } = useContext(UserContext);
   const classes = useStyles();
+  const { handleLogout } = props;
 
   return (
     <div className={classes.root}>
@@ -48,12 +51,24 @@ const Nav = () => {
             </Button>
           </ButtonGroup>
 
-          <NavLink to="/login">
-            <Button color="inherit">Login</Button>
-          </NavLink>
-          <NavLink to="/register">
-            <Button color="inherit">Register</Button>
-          </NavLink>
+          {!currentUser ? (
+            <>
+              <NavLink to="/login">
+                <Button color="inherit">Login</Button>
+              </NavLink>
+              <NavLink to="/register">
+                <Button color="inherit">Register</Button>
+              </NavLink>
+            </>
+          ) : (
+            <Button
+              onClick={handleLogout}
+              variant="contained"
+              color="secondary"
+            >
+              Logout
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>

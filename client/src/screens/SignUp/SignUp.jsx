@@ -63,7 +63,7 @@ const SignUp = (props) => {
           noValidate
           onSubmit={(e) => {
             e.preventDefault();
-            handleLogin(formData);
+            handleRegister(formData);
           }}
         >
           <TextField
@@ -88,7 +88,6 @@ const SignUp = (props) => {
             label="Email"
             name="email"
             autoComplete="email"
-            autoFocus
             value={email}
             onChange={handleChange}
           />

@@ -5,7 +5,7 @@ import Layout from "./components/Layout/Layout";
 import MainContainer from "./containers/MainContainer/MainContainer";
 import SignIn from "./screens/SignIn/SignIn";
 import SignUp from "./screens/SignUp/SignUp";
-import { loginUser } from "./services/auth";
+import { loginUser, registerUser, removeToken } from "./services/auth";
 import { UserContext } from "./utilities/UserContext";
 
 function App() {
@@ -25,6 +25,18 @@ function App() {
     history.push("/");
   };
 
+  const handleRegister = async (formData) => {
+    const currentUser = await registerUser(formData);
+    setCurrentUser(currentUser);
+    history.push("/");
+  };
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    localStorage.removeItem("authToken");
+    removeToken();
+  };
+
   return (
     <Layout>
       <Switch>
@@ -33,7 +45,7 @@ function App() {
             <SignIn handleLogin={handleLogin} />
           </Route>
           <Route path="/register">
-            <SignUp />
+            <SignUp handleRegister={handleRegister} />
           </Route>
           <Route path="/">
             <MainContainer />

@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
     // background: "#444",
     marginRight: "2em",
   },
+  navbar: {
+    background: "white",
+    color: "#292f3c",
+  },
 }));
 
 const Nav = () => {
@@ -31,26 +35,20 @@ const Nav = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.navbar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             THEGATHERING
           </Typography>
           <ButtonGroup variant="text" className={classes.button}>
-            <NavLink to="/">
-              <Button color="inherit">Home</Button>
-            </NavLink>
-            <NavLink to="/articles">
-              <Button color="inherit">Articles</Button>
-            </NavLink>
+            <Button color="inherit" component={NavLink} to="/">
+              Home
+            </Button>
+            <Button color="inherit" component={NavLink} to="/articles">
+              Articles
+            </Button>
           </ButtonGroup>
 
-          {/* <Typography variant="h7" className={classes.title}>
-            <NavLink to="/">Home</NavLink>
-          </Typography> */}
-          {/* <Typography variant="h7" className={classes.title}>
-            <NavLink to="/articles">Articles</NavLink>
-          </Typography> */}
           <NavLink to="/login">
             <Button color="inherit">Login</Button>
           </NavLink>
@@ -60,12 +58,6 @@ const Nav = () => {
         </Toolbar>
       </AppBar>
     </div>
-    // <nav>
-    //   <NavLink to="/">THEGATHERING</NavLink>
-    //   <NavLink to="/articles">Articles</NavLink>
-    //   <NavLink to="/login">Sign In</NavLink>
-    //   <NavLink to="/register">Sign Up</NavLink>
-    // </nav>
   );
 };
 

@@ -1,0 +1,12 @@
+.banner {
+  background: #aeb7b8;
+  background-image: url(../../assets/urza.jpg);
+  background-size: cover;
+  background-position-y: center;
+  background-blend-mode: multiply;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

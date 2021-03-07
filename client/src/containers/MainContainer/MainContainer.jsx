@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 // import ArticleCard from "../../components/ArticleCard/ArticleCard";
-import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import ArticleCreate from "../../screens/ArticleCreate/ArticleCreate";
 import ArticleDetail from "../../screens/ArticleDetail/ArticleDetail";
 import ArticleEdit from "../../screens/ArticleEdit/ArticleEdit";
 import Articles from "../../screens/Articles/Articles";
+import Home from "../../screens/Home/Home";
 import {
   destroyArticle,
   getAllArticles,
@@ -62,7 +63,7 @@ const MainContainer = () => {
 
   return (
     <Switch>
-      {!currentUser && <Redirect to="/" />}
+      {/* {!currentUser && <Redirect to="/" />} */}
       <Route path="/articles/new">
         <ArticleCreate handleCreate={handleCreate} />
       </Route>
@@ -78,6 +79,9 @@ const MainContainer = () => {
           currentUser={currentUser}
           handleDelete={handleDelete}
         />
+      </Route>
+      <Route path="/">
+        <Home />
       </Route>
     </Switch>
   );

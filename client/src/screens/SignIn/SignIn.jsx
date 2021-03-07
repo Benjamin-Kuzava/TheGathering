@@ -9,6 +9,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { IconButton, InputAdornment } from "@material-ui/core";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,6 +38,7 @@ const Login = (props) => {
     username: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
   const { username, password } = formData;
   const { handleLogin } = props;
   const classes = useStyles();
@@ -45,6 +49,14 @@ const Login = (props) => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   return (
@@ -86,12 +98,25 @@ const Login = (props) => {
             fullWidth
             name="password"
             label="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             autoComplete="current-password"
             value={password}
             onChange={handleChange}
             color="secondary"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Button
             type="submit"

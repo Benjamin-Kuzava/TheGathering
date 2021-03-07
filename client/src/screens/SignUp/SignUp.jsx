@@ -9,6 +9,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { IconButton, InputAdornment } from "@material-ui/core";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,6 +39,7 @@ const SignUp = (props) => {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
   const { username, email, password } = formData;
   const { handleRegister } = props;
   const { paper, avatar, form, submit } = useStyles();
@@ -46,6 +50,14 @@ const SignUp = (props) => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   return (
@@ -98,11 +110,52 @@ const SignUp = (props) => {
             fullWidth
             name="password"
             label="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             autoComplete="current-password"
             value={password}
             onChange={handleChange}
+            helperText="Must be at least six characters"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            name="password-confirmation"
+            label="Confirm Password"
+            type={showPassword ? "text" : "password"}
+            id="password-confirmation"
+            autoComplete="current-password"
+            // value={passwordConfirmation}
+            // onChange={handleChange}
+            helperText="Must be at least six characters"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Button
             type="submit"

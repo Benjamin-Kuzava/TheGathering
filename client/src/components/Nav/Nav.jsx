@@ -4,6 +4,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../utilities/UserContext";
@@ -37,7 +38,7 @@ const Nav = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.navbar}>
+      <AppBar position="fixed" className={classes.navbar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             THEGATHERING
@@ -65,6 +66,7 @@ const Nav = (props) => {
               onClick={handleLogout}
               variant="contained"
               color="secondary"
+              startIcon={<AccountCircle />}
             >
               Logout
             </Button>

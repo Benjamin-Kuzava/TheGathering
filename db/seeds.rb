@@ -11,13 +11,34 @@ Article.destroy_all
 User.destroy_all
 
 @gabriel =
-  User.create!(username: 'Gabe', email: 'ben@ben.io', password: '123456')
-@bob = User.create!(username: 'bob', email: 'bob@bob.io', password: '123456')
+  User.create!(
+    username: 'Gabe',
+    first_name: 'Gabriel',
+    last_name: 'Nassif',
+    email: 'ben@ben.io',
+    password: '123456',
+  )
+@bob =
+  User.create!(
+    username: 'SMan',
+    first_name: 'Seth',
+    last_name: 'Mansfield',
+    email: 'bob@bob.io',
+    password: '123456',
+  )
 @billy =
-  User.create!(username: 'billy', email: 'billy@billy.io', password: '123456')
+  User.create!(
+    username: 'billy',
+    first_name: 'Gabriel',
+    last_name: 'Nassif',
+    email: 'billy@billy.io',
+    password: '123456',
+  )
 @barbara =
   User.create!(
     username: 'barbara',
+    first_name: 'Gabriel',
+    last_name: 'Nassif',
     email: 'barbara@barbara.io',
     password: '123456',
   )

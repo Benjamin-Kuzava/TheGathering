@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
-    render json: @article, include: :categories
+    render json: @article, include: %i[categories user]
   end
 
   # POST /articles

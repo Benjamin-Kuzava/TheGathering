@@ -1,3 +1,4 @@
+import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Banner from "../../components/Banner/Banner";
@@ -17,10 +18,15 @@ const ArticleDetail = () => {
   }, [id]);
 
   return (
-    <div>
-      <Banner article={article} />
-      <h1>detail</h1>
-    </div>
+    <Grid container spacing={4}>
+      <Grid item xs={12}>
+        <Banner article={article} />
+      </Grid>
+      <Grid item xs={8}>
+        <Typography variant="h3">{article?.title}</Typography>
+        <hr />
+      </Grid>
+    </Grid>
   );
 };
 

@@ -26,13 +26,15 @@ const ArticleCard = (props) => {
 
   return (
     <Card className={root} article={props.article}>
-      <CardActionArea article={props.article}>
+      <CardActionArea
+        article={props.article}
+        component={Link}
+        to={`/articles/${props.article.id}`}
+      >
         <CardMedia
           className={media}
           image={props.article.img_url}
           title="Contemplative Reptile"
-          component={Link}
-          to={`/articles/${props.article.id}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -44,7 +46,12 @@ const ArticleCard = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          component={Link}
+          to={`/articles/${props.article.id}`}
+        >
           Read More
         </Button>
       </CardActions>

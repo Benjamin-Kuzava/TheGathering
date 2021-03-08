@@ -10,7 +10,8 @@ Category.destroy_all
 Article.destroy_all
 User.destroy_all
 
-@ben = User.create!(username: 'ben', email: 'ben@ben.io', password: '123456')
+@gabriel =
+  User.create!(username: 'Gabe', email: 'ben@ben.io', password: '123456')
 @bob = User.create!(username: 'bob', email: 'bob@bob.io', password: '123456')
 @billy =
   User.create!(username: 'billy', email: 'billy@billy.io', password: '123456')
@@ -37,14 +38,14 @@ puts "#{User.count} users created."
 puts "#{Category.count} categories created."
 
 Article.create!(
-  title: 'This is a title',
+  title: 'Gabriel Nassif Plays Modern Valakut Company',
   content: Faker::Lorem.paragraphs(number: 4),
   summary:
-    'This is a sample summary. Please read me because my information is very important!',
+    "Collected Company and Valakut are two staples of Modern, and incredibly powerful cards, so it's no wonder that they both appear in the same deck.",
   img_url:
     'https://strategy.channelfireball.com/wp-content/uploads/2021/03/gab2-1024x1024.jpg',
-  user: User.all.sample,
-  categories: [@format.sample, @budget],
+  user: @gabriel,
+  categories: [@modern, @budget],
 )
 
 Article.create!(

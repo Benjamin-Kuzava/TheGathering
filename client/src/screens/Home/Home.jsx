@@ -10,7 +10,7 @@ const Home = (props) => {
   return (
     <Grid container spacing={4} justify="center">
       <Grid item xs={12}>
-        <Banner />
+        <Banner isHome />
       </Grid>
       <Grid item container spacing={4} xs={8}>
         {articles.map((article) => (

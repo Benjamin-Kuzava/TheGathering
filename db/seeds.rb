@@ -39,7 +39,10 @@ puts "#{Category.count} categories created."
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/gab2-1024x1024.jpg',
   user: User.all.sample,
   categories: [@format.sample, @budget],
 )
@@ -47,7 +50,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/amy2-1024x1024.jpg',
   user: User.all.sample,
   categories: [@format.sample, @budget],
 )
@@ -55,7 +61,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/WebsiteSquareGenericThumb-mengu-1024x1024.jpg',
   user: User.all.sample,
   categories: [@format.sample, @budget],
 )
@@ -63,7 +72,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/vince4-1024x1024.jpg',
   user: User.all.sample,
   categories: [@format.sample, @budget],
 )
@@ -71,7 +83,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/wernegiantssite-768x768.jpg',
   user: User.all.sample,
   categories: [@format.sample, @budget],
 )
@@ -79,7 +94,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/WebsiteSquareGenericThumb-t5-768x768.jpg',
   user: User.all.sample,
   categories: [@format.sample, @budget],
 )
@@ -87,7 +105,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/levinefeldonsite-768x768.jpg',
   user: User.all.sample,
   categories: [@format.sample, @miscellaneous],
 )
@@ -95,7 +116,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/hueybattleofwitssite-768x768.jpg',
   user: User.all.sample,
   categories: [@format.sample],
 )
@@ -103,7 +127,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/saintgradingsite-768x768.jpg',
   user: User.all.sample,
   categories: [@format.sample],
 )
@@ -111,7 +138,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/mengubantsite-768x768.jpg',
   user: User.all.sample,
   categories: [@format.sample],
 )
@@ -119,7 +149,10 @@ Article.create!(
 Article.create!(
   title: 'This is a title',
   content: Faker::Lorem.paragraphs(number: 4),
-  img_url: 'https://source.unsplash.com/random',
+  summary:
+    'This is a sample summary. Please read me because my information is very important!',
+  img_url:
+    'https://strategy.channelfireball.com/wp-content/uploads/2021/03/reid2-768x768.jpg',
   user: User.all.sample,
   categories: [@format.sample],
 )

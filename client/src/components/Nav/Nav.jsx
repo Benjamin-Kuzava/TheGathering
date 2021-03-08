@@ -52,7 +52,6 @@ const Nav = (props) => {
               Articles
             </Button>
           </ButtonGroup>
-
           {!currentUser ? (
             <>
               <NavLink to="/login">

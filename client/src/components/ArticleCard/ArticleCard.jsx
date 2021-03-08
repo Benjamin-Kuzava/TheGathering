@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import "./ArticleCard";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -15,36 +16,36 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140,
+    backgroundPositionY: "top",
   },
 });
 
 const ArticleCard = (props) => {
   const { root, media } = useStyles();
+  // const { title, img_URL } = props;
 
   return (
-    <Card className={root}>
-      <CardActionArea>
+    <Card className={root} article={props.article}>
+      <CardActionArea article={props.article}>
         <CardMedia
           className={media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={props.article.img_url}
           title="Contemplative Reptile"
+          component={Link}
+          to={`/articles/${props.article.id}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Article Title
+            {props.article.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident,
-            fugit!
+            {props.article.summary}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+          Read More
         </Button>
       </CardActions>
     </Card>

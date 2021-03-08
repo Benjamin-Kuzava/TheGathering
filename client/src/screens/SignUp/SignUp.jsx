@@ -36,11 +36,13 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = (props) => {
   const [formData, setFormData] = useState({
     username: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const { username, email, password } = formData;
+  const { username, firstname, lastname, email, password } = formData;
   const { handleRegister } = props;
   const { paper, avatar, form, submit } = useStyles();
 
@@ -78,6 +80,37 @@ const SignUp = (props) => {
             handleRegister(formData);
           }}
         >
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <TextField
+                variant="standard"
+                margin="normal"
+                required
+                fullWidth
+                id="firstname"
+                label="First name"
+                name="firstname"
+                autoComplete="firstname"
+                autoFocus
+                value={firstname}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                variant="standard"
+                margin="normal"
+                required
+                fullWidth
+                id="lastname"
+                label="Last name"
+                name="lastname"
+                autoComplete="lastname"
+                value={lastname}
+                onChange={handleChange}
+              />
+            </Grid>
+          </Grid>
           <TextField
             variant="standard"
             margin="normal"
@@ -87,7 +120,6 @@ const SignUp = (props) => {
             label="Username"
             name="username"
             autoComplete="username"
-            autoFocus
             value={username}
             onChange={handleChange}
           />

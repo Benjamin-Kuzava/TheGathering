@@ -29,7 +29,7 @@ const Banner = (props) => {
       }}
     >
       <Typography variant="h2" className={classes.title}>
-        {isHome ? "The Gathering" : props.article?.title}
+        {isHome ? "The Gathering" : ""}
       </Typography>
       <Typography variant="h4" className={classes.caption}>
         {isHome ? "MTG Articles from Standard to Pauper" : ""}

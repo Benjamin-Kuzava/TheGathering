@@ -65,23 +65,33 @@ const MainContainer = () => {
     <Switch>
       {/* {!currentUser && <Redirect to="/" />} */}
       <Route path="/articles/new">
-        <ArticleCreate handleCreate={handleCreate} />
+        <ArticleCreate
+          handleCreate={handleCreate}
+          articles={articles}
+          setArticles={setArticles}
+          setCatories={setCatories}
+        />
       </Route>
       <Route path="/articles/:id/edit">
-        <ArticleEdit articles={articles} handleUpdate={handleUpdate} />
+        <ArticleEdit
+          articles={articles}
+          handleUpdate={handleUpdate}
+          setArticles={setArticles}
+          setCatories={setCatories}
+        />
       </Route>
       <Route path="/articles/:id">
-        <ArticleDetail categories={categories} />
+        <ArticleDetail artilces={articles} categories={categories} />
       </Route>
       <Route path="/articles">
         <Articles
           articles={articles}
-          currentUser={currentUser}
           handleDelete={handleDelete}
+          categories={categories}
         />
       </Route>
       <Route path="/">
-        <Home />
+        <Home artilces={articles} categories={categories} />
       </Route>
     </Switch>
   );

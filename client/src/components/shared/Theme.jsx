@@ -29,7 +29,25 @@ export const theme = createMuiTheme({
       // 900: "#28200e",
     },
   },
-  // typography: {
-  //   fontFamily: "Roboto",
-  // },
+  typography: {
+    // fontFamily: "'Overlock SC'",
+    h1: {
+      fontFamily: "Overlock SC",
+    },
+    h2: {
+      fontFamily: "Overlock SC",
+    },
+    h3: {
+      fontFamily: "Overlock SC",
+    },
+    h4: {
+      fontFamily: "Overlock SC",
+    },
+    h5: {
+      fontFamily: "Overlock SC",
+    },
+    h6: {
+      fontFamily: "Overlock SC",
+    },
+  },
 });

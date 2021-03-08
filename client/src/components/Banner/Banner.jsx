@@ -6,9 +6,11 @@ const useStyles = makeStyles(() => ({
   title: {
     color: "white",
     textTransform: "uppercase",
+    fontFamily: "Overlock SC",
   },
   caption: {
     color: "white",
+    fontWeight: "bold",
   },
 }));
 
@@ -17,11 +19,11 @@ const Banner = (props) => {
 
   return (
     <header className="banner">
-      <Typography variant="h3" className={classes.title}>
+      <Typography variant="h2" className={classes.title}>
         The Gathering
       </Typography>
       <Typography variant="h4" className={classes.caption}>
-        Articles from Standard to Pauper
+        MTG Articles from Standard to Pauper
       </Typography>
     </header>
   );

@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: "left",
     flexGrow: 1,
+    letterSpacing: "3px",
   },
   button: {
     // background: "#444",
@@ -40,8 +41,8 @@ const Nav = (props) => {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.navbar}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            THEGATHERING
+          <Typography variant="h5" className={classes.title}>
+            THE GATHERING
           </Typography>
           <ButtonGroup variant="text" className={classes.button}>
             <Button color="inherit" component={NavLink} to="/">

@@ -1,18 +1,33 @@
-import { Grid } from "@material-ui/core";
+import { Grid, makeStyles, Paper } from "@material-ui/core";
 import React from "react";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import Banner from "../../components/Banner/Banner";
 import "./Home.css";
 
+const useStyles = makeStyles(() => ({
+  main: {
+    marginTop: "-5em",
+  },
+}));
+
 const Home = (props) => {
   const { articles } = props;
+  const classes = useStyles();
 
   return (
     <Grid container spacing={4} justify="center">
       <Grid item xs={12}>
         <Banner isDetail />
       </Grid>
-      <Grid item container spacing={4} xs={8}>
+      <Grid
+        item
+        container
+        spacing={4}
+        xs={8}
+        component={Paper}
+        elevation={3}
+        className={classes.main}
+      >
         {articles.map((article) => (
           <Grid key={article.id} item xs={3}>
             <ArticleCard key={article.id} article={article} />

@@ -24,7 +24,7 @@ const Layout = (props) => {
           {props.children}
         </Grid>
         <Grid item xs={12}>
-          <Footer />
+          {/* <Footer /> */}
         </Grid>
       </Grid>
     </div>

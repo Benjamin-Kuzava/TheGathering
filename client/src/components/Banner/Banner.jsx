@@ -17,22 +17,22 @@ const useStyles = makeStyles(() => ({
 
 const Banner = (props) => {
   const classes = useStyles();
-  const { isHome } = props;
+  const { isDetail } = props;
 
   return (
     <header
       className="banner"
       style={{
-        backgroundImage: isHome
+        backgroundImage: isDetail
           ? `url(${Background})`
           : `url(${props.article?.img_url})`,
       }}
     >
       <Typography variant="h2" className={classes.title}>
-        {isHome ? "The Gathering" : ""}
+        {isDetail ? "The Gathering" : ""}
       </Typography>
       <Typography variant="h4" className={classes.caption}>
-        {isHome ? "MTG Articles from Standard to Pauper" : ""}
+        {isDetail ? "MTG Articles from Standard to Pauper" : ""}
       </Typography>
     </header>
   );

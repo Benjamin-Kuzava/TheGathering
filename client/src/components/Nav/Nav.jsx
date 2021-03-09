@@ -51,6 +51,11 @@ const Nav = (props) => {
             <Button color="inherit" component={NavLink} to="/articles">
               Articles
             </Button>
+            {currentUser?.username && (
+              <Button color="inherit" component={NavLink} to="/articles/new">
+                Create
+              </Button>
+            )}
           </ButtonGroup>
           {!currentUser ? (
             <>

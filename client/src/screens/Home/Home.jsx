@@ -8,6 +8,9 @@ const useStyles = makeStyles(() => ({
   main: {
     marginTop: "-5em",
   },
+  mainContainer: {
+    paddingBottom: "15rem",
+  },
 }));
 
 const Home = (props) => {
@@ -15,7 +18,12 @@ const Home = (props) => {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={4} justify="center">
+    <Grid
+      container
+      spacing={4}
+      justify="center"
+      className={classes.mainContainer}
+    >
       <Grid item xs={12}>
         <Banner isDetail />
       </Grid>

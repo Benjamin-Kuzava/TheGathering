@@ -21,8 +21,6 @@ const ArticleDetail = (props) => {
     fetchArticle();
   }, [id]);
 
-  const { handleDelete } = props;
-
   return (
     <Grid container spacing={4} justify="center">
       <Grid item xs={12}>
@@ -43,15 +41,13 @@ const ArticleDetail = (props) => {
             >
               Edit Content
             </Button>
-            <Button variant="outlined" color="secondary" onClick={handleDelete}>
-              Delete Article
-            </Button>
           </Grid>
         ) : (
           ""
         )}
         <hr />
         {article?.content ? parse(article?.content) : ""}
+        <div>{article?.content}</div>
       </Grid>
     </Grid>
   );

@@ -22,7 +22,6 @@ const useStyles = makeStyles({
 
 const ArticleCard = (props) => {
   const { root, media } = useStyles();
-  // const { title, img_URL } = props;
 
   return (
     <Card className={root} article={props.article}>

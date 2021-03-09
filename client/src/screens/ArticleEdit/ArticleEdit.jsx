@@ -3,19 +3,20 @@ import React, { useEffect, useState } from "react";
 import Banner from "../../components/Banner/Banner";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 const ArticleEdit = (props) => {
   const [richText, setRichText] = useState("");
   const [formData, setformData] = useState({
     title: "",
-    content: "",
+    content: richText,
     img_url: "",
     summary: "",
   });
 
-  const { handleCreate, handleUpdate, articles } = props;
+  const { handleUpdate, articles } = props;
   const { title, content, img_url, summary } = formData;
+  const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
@@ -108,6 +109,14 @@ const ArticleEdit = (props) => {
           />
           <Button type="submit" variant="contained" color="primary">
             Submit Changes
+          </Button>
+          <Button
+            type="submit"
+            variant="outlined"
+            color="primary"
+            onClick={() => history.push("/")}
+          >
+            Discard Changes
           </Button>
         </form>
       </Grid>

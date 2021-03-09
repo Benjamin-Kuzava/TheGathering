@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-// import ArticleCard from "../../components/ArticleCard/ArticleCard";
+import { useEffect, useState } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import ArticleCreate from "../../screens/ArticleCreate/ArticleCreate";
 import ArticleDetail from "../../screens/ArticleDetail/ArticleDetail";
@@ -13,11 +12,9 @@ import {
   putArticle,
 } from "../../services/articles";
 import { getAllCategories } from "../../services/categories";
-import { UserContext } from "../../utilities/UserContext";
 import "./MainContainer.css";
 
 const MainContainer = () => {
-  const { currentUser } = useContext(UserContext);
   const [articles, setArticles] = useState([]);
   const [categories, setCatories] = useState([]);
   const history = useHistory();

@@ -41,7 +41,12 @@ const Nav = (props) => {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.navbar}>
         <Toolbar>
-          <Typography variant="h5" className={classes.title}>
+          <Typography
+            variant="h5"
+            className={classes.title}
+            component={NavLink}
+            to="/"
+          >
             THE GATHERING
           </Typography>
           <ButtonGroup variant="text" className={classes.button}>

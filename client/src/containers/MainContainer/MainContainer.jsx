@@ -49,6 +49,7 @@ const MainContainer = () => {
     setArticles((prevState) =>
       prevState.filter((article) => article.id !== id)
     );
+    history.push("/");
   };
 
   const handleUpdate = async (id, formData) => {
@@ -58,7 +59,7 @@ const MainContainer = () => {
         return article.id === Number(id) ? updatedArticle : article;
       })
     );
-    history.push("/articles");
+    history.push("/");
   };
 
   return (
@@ -82,7 +83,11 @@ const MainContainer = () => {
         />
       </Route>
       <Route path="/articles/:id">
-        <ArticleDetail articles={articles} categories={categories} />
+        <ArticleDetail
+          articles={articles}
+          categories={categories}
+          handleDelete={handleDelete}
+        />
       </Route>
       <Route path="/articles">
         <Articles articles={articles} categories={categories} />

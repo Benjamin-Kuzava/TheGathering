@@ -7,10 +7,11 @@ import { UserContext } from "../../utilities/UserContext";
 import { formatDate } from "../../utilities/utilities";
 import "./ArticleEdit.css";
 
-const ArticleEdit = () => {
+const ArticleEdit = (props) => {
   const [article, setArticle] = useState(null);
   const { currentUser } = useContext(UserContext);
   const { id } = useParams();
+  const { handleDelete } = props;
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -44,6 +45,13 @@ const ArticleEdit = () => {
         )}
         <hr />
         <Typography variant="body1">{article?.content}</Typography>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => handleDelete(article.id)}
+        >
+          Delete Article
+        </Button>
       </Grid>
     </Grid>
   );

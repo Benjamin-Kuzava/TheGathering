@@ -8,7 +8,7 @@ import { formatDate } from "../../utilities/utilities";
 import "./ArticleDetail.css";
 import parse from "html-react-parser";
 
-const ArticleDetail = () => {
+const ArticleDetail = (props) => {
   const [article, setArticle] = useState(null);
   const { currentUser } = useContext(UserContext);
   const { id } = useParams();
@@ -21,6 +21,8 @@ const ArticleDetail = () => {
     fetchArticle();
   }, [id]);
 
+  const { handleDelete } = props;
+
   return (
     <Grid container spacing={4} justify="center">
       <Grid item xs={12}>
@@ -32,14 +34,19 @@ const ArticleDetail = () => {
           article?.user.last_name
         } · ${formatDate(article?.created_at)}`}</Typography>
         {currentUser?.id === article?.user_id ? (
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to={`/articles/${article?.id}/edit`}
-          >
-            Edit
-          </Button>
+          <Grid container justify="space-between">
+            <Button
+              variant="contained"
+              color="secondary"
+              component={Link}
+              to={`/articles/${article?.id}/edit`}
+            >
+              Edit Content
+            </Button>
+            <Button variant="outlined" color="secondary" onClick={handleDelete}>
+              Delete Article
+            </Button>
+          </Grid>
         ) : (
           ""
         )}

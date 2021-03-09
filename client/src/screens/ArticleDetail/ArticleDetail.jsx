@@ -1,6 +1,6 @@
 import { Button, Grid, Typography } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router-dom";
 import Banner from "../../components/Banner/Banner";
 import { getOneArticle } from "../../services/articles";
 import { UserContext } from "../../utilities/UserContext";
@@ -31,14 +31,21 @@ const ArticleDetail = () => {
           article?.user.last_name
         } · ${formatDate(article?.created_at)}`}</Typography>
         {currentUser?.id === article?.user_id ? (
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            component={Link}
+            to={`/articles/${article?.id}/edit`}
+          >
             Edit
           </Button>
         ) : (
           ""
         )}
         <hr />
-        <Typography variant="body1">{article?.content}</Typography>
+        <Typography variant="body1" style={{ whitespace: "pre" }}>
+          {article?.content}
+        </Typography>
       </Grid>
     </Grid>
   );

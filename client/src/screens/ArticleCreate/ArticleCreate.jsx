@@ -1,4 +1,4 @@
-import { Grid, TextField } from "@material-ui/core";
+import { Button, Grid, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import Banner from "../../components/Banner/Banner";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -13,7 +13,7 @@ const ArticleCreate = (props) => {
     summary: "",
   });
 
-  const { title, content, img_url, summary } = props;
+  const { title, img_url, summary, handleCreate } = props;
 
   const handleRTChange = (e, editor) => {
     const richText = editor.getData();
@@ -38,50 +38,61 @@ const ArticleCreate = (props) => {
         <Banner isDetail />
       </Grid>
       <Grid item xs={8}>
-        <TextField
-          variant="standard"
-          margin="normal"
-          required
-          fullWidth
-          id="title"
-          label="Title"
-          name="title"
-          autoComplete="title"
-          autoFocus
-          value={title}
-          onChange={handleChange}
-          color="secondary"
-        />
-        <TextField
-          variant="standard"
-          margin="normal"
-          required
-          fullWidth
-          id="img_url"
-          label="Banner Image URL"
-          name="img_url"
-          autoComplete="img_url"
-          autoFocus
-          value={img_url}
-          onChange={handleChange}
-          color="secondary"
-        />
-        <TextField
-          variant="standard"
-          margin="normal"
-          required
-          fullWidth
-          id="summary"
-          label="Short Summary"
-          helperText="1-2 sentences max."
-          name="summary"
-          autoComplete="summary"
-          autoFocus
-          value={summary}
-          onChange={handleChange}
-          color="secondary"
-        />
-        <CKEditor editor={ClassicEditor} onChange={handleRTChange} />
+        <form
+          className="create-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleCreate(formData);
+          }}
+        >
+          <TextField
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            id="title"
+            label="Title"
+            name="title"
+            autoComplete="title"
+            autoFocus
+            value={title}
+            onChange={handleChange}
+            color="secondary"
+          />
+          <TextField
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            id="img_url"
+            label="Banner Image URL"
+            name="img_url"
+            autoComplete="img_url"
+            autoFocus
+            value={img_url}
+            onChange={handleChange}
+            color="secondary"
+          />
+          <TextField
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            id="summary"
+            label="Short Summary"
+            helperText="1-2 sentences max."
+            name="summary"
+            autoComplete="summary"
+            autoFocus
+            value={summary}
+            onChange={handleChange}
+            color="secondary"
+          />
+          <CKEditor editor={ClassicEditor} onChange={handleRTChange} />
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
+        </form>
       </Grid>
     </Grid>
   );

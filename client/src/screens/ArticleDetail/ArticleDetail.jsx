@@ -6,6 +6,7 @@ import { getOneArticle } from "../../services/articles";
 import { UserContext } from "../../utilities/UserContext";
 import { formatDate } from "../../utilities/utilities";
 import "./ArticleDetail.css";
+import parse from "html-react-parser";
 
 const ArticleDetail = () => {
   const [article, setArticle] = useState(null);
@@ -43,9 +44,7 @@ const ArticleDetail = () => {
           ""
         )}
         <hr />
-        <Typography variant="body1" style={{ whitespace: "pre" }}>
-          {article?.content}
-        </Typography>
+        {article?.content ? parse(article?.content) : ""}
       </Grid>
     </Grid>
   );

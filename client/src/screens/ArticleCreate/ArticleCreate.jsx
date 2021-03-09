@@ -13,7 +13,7 @@ const ArticleCreate = (props) => {
     summary: "",
   });
 
-  const { title, img_url, summary, handleCreate } = props;
+  const { title, img_url, summary, handleCreate } = formData;
 
   const handleRTChange = (e, editor) => {
     const richText = editor.getData();
@@ -68,7 +68,6 @@ const ArticleCreate = (props) => {
             label="Banner Image URL"
             name="img_url"
             autoComplete="img_url"
-            autoFocus
             value={img_url}
             onChange={handleChange}
             color="secondary"
@@ -83,7 +82,6 @@ const ArticleCreate = (props) => {
             helperText="1-2 sentences max."
             name="summary"
             autoComplete="summary"
-            autoFocus
             value={summary}
             onChange={handleChange}
             color="secondary"

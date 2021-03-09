@@ -1,57 +1,115 @@
-import { Button, Grid, Typography } from "@material-ui/core";
-import React, { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Button, Grid, TextField } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import Banner from "../../components/Banner/Banner";
-import { getOneArticle } from "../../services/articles";
-import { UserContext } from "../../utilities/UserContext";
-import { formatDate } from "../../utilities/utilities";
-import "./ArticleEdit.css";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useParams } from "react-router";
 
 const ArticleEdit = (props) => {
-  const [article, setArticle] = useState(null);
-  const { currentUser } = useContext(UserContext);
+  const [richText, setRichText] = useState("");
+  const [formData, setformData] = useState({
+    title: "",
+    content: "",
+    img_url: "",
+    summary: "",
+  });
+
+  const { handleCreate, handleUpdate, articles } = props;
+  const { title, content, img_url, summary } = formData;
   const { id } = useParams();
-  const { handleDelete } = props;
 
   useEffect(() => {
-    const fetchArticle = async () => {
-      const article = await getOneArticle(id);
-      setArticle(article);
+    const prefillFormData = () => {
+      const article = articles.find((article) => article.id === Number(id));
+      setformData({
+        title: article.title,
+        content: article.content,
+        img_url: article.img_url,
+        summary: article.summary,
+      });
     };
-    fetchArticle();
-  }, [id]);
+    if (articles.length) prefillFormData();
+  }, [articles, id]);
+
+  const handleRTChange = (e, editor) => {
+    const richText = editor.getData();
+    setRichText(richText);
+    setformData((prevState) => ({
+      ...prevState,
+      content: richText,
+    }));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setformData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   return (
     <Grid container spacing={4} justify="center">
       <Grid item xs={12}>
-        <Banner article={article} />
+        <Banner isDetail />
       </Grid>
-      <Grid item xs={5}>
-        <Typography variant="h3">{article?.title}</Typography>
-        <Typography variant="subtitle1">{`${article?.user.first_name} ${
-          article?.user.last_name
-        } · ${formatDate(article?.created_at)}`}</Typography>
-        {currentUser?.id === article?.user_id ? (
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to={`/articles/${article?.id}/edit`}
-          >
-            This is the edit page
-          </Button>
-        ) : (
-          ""
-        )}
-        <hr />
-        <Typography variant="body1">{article?.content}</Typography>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => handleDelete(article.id)}
+      <Grid item xs={8}>
+        <form
+          className="create-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleUpdate(id, formData);
+          }}
         >
-          Delete Article
-        </Button>
+          <TextField
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            id="title"
+            label="Title"
+            name="title"
+            autoComplete="title"
+            value={title}
+            onChange={handleChange}
+            color="secondary"
+          />
+          <TextField
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            id="img_url"
+            label="Banner Image URL"
+            name="img_url"
+            autoComplete="img_url"
+            value={img_url}
+            onChange={handleChange}
+            color="secondary"
+          />
+          <TextField
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            id="summary"
+            label="Short Summary"
+            helperText="1-2 sentences max."
+            name="summary"
+            autoComplete="summary"
+            value={summary}
+            onChange={handleChange}
+            color="secondary"
+          />
+          <CKEditor
+            editor={ClassicEditor}
+            onChange={handleRTChange}
+            data={content}
+          />
+          <Button type="submit" variant="contained" color="primary">
+            Submit Changes
+          </Button>
+        </form>
       </Grid>
     </Grid>
   );

@@ -56,7 +56,7 @@ const MainContainer = () => {
         return article.id === Number(id) ? updatedArticle : article;
       })
     );
-    history.push("/");
+    history.push(`/articles/${id}`);
   };
 
   return (

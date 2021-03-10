@@ -114,7 +114,7 @@ const ArticleEdit = (props) => {
             type="submit"
             variant="outlined"
             color="primary"
-            onClick={() => history.push("/")}
+            onClick={() => history.push(`/articles/${id}`)}
           >
             Discard Changes
           </Button>

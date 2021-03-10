@@ -47,13 +47,13 @@ const ArticleDetail = (props) => {
     .filter((a) => a.user_id === article?.user_id && a.id !== article?.id)
     .map((article) => <ArticleCard key={article.id} article={article} />);
 
-  const sameCategoryJSX = articles
-    .filter(
-      (a) =>
-        a.categories[0].name === article?.categories[0].name &&
-        a.id !== article?.id
-    )
-    .map((article) => <ArticleCard key={article.id} article={article} />);
+  // const sameCategoryJSX = articles
+  //   .filter(
+  //     (a) =>
+  //       a.categories[0].name === article?.categories[0].name &&
+  //       a.id !== article?.id
+  //   )
+  //   .map((article) => <ArticleCard key={article.id} article={article} />);
 
   return (
     <Grid container spacing={4} justify="space-evenly">
@@ -99,13 +99,14 @@ const ArticleDetail = (props) => {
           spacing={4}
           alignItems="center"
           component={Paper}
+          elevation={3}
           className={classes.recommended}
         >
           <Typography variant="button">{`More Content from ${article?.user.first_name} ${article?.user.last_name}`}</Typography>
           <Divider className={classes.divider} />
           {sameAuthorJSX}
         </Grid>
-        <Grid
+        {/* <Grid
           item
           xs={12}
           container
@@ -113,6 +114,7 @@ const ArticleDetail = (props) => {
           spacing={4}
           alignItems="center"
           component={Paper}
+          elevation={3}
           className={classes.recommended}
         >
           <Typography variant="button">
@@ -121,7 +123,7 @@ const ArticleDetail = (props) => {
           </Typography>
           <Divider className={classes.divider} />
           {sameCategoryJSX}
-        </Grid>
+        </Grid> */}
       </Grid>
     </Grid>
   );

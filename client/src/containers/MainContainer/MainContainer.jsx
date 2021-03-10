@@ -3,7 +3,6 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import ArticleCreate from "../../screens/ArticleCreate/ArticleCreate";
 import ArticleDetail from "../../screens/ArticleDetail/ArticleDetail";
 import ArticleEdit from "../../screens/ArticleEdit/ArticleEdit";
-import Articles from "../../screens/Articles/Articles";
 import Home from "../../screens/Home/Home";
 import {
   destroyArticle,

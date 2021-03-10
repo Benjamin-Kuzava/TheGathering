@@ -1,13 +1,17 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import React from "react";
-// import Footer from "../Footer/Footer";
+import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import "./Layout.css";
 
 const useStyles = makeStyles({
   pageContainer: {
-    position: "relative",
+    // position: "relative",
+    // minHeight: "100vh",
     minHeight: "100vh",
+    display: "grid",
+    gridTemplateRows: "auto 1fr auto",
+    gridTemplateColumns: "100%",
   },
 });
 

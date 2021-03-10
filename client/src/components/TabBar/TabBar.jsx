@@ -7,8 +7,10 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { UserContext } from "../../utilities/UserContext";
-import { Grid } from "@material-ui/core";
+import { Divider, Fab, Grid } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import ArticleCard from "../ArticleCard/ArticleCard";
+import { Link } from "react-router-dom";
 
 // Adapted from docs: https://material-ui.com/components/tabs/
 const StyledTabs = withStyles({
@@ -60,6 +62,13 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: theme.palette.background.paper,
   },
+  divider: {
+    color: "black",
+    width: "100%",
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(0.5),
+  },
 }));
 
 export default function TabBar(props) {
@@ -87,6 +96,10 @@ export default function TabBar(props) {
       </AppBar>
       <TabPanel value={value} index={0}>
         <Grid container spacing={4}>
+          <Grid item xs={12} container justify="center">
+            <Typography variant="h5">Latest Articles</Typography>
+          </Grid>
+          <Divider className={classes.divider} />
           {articles.map((article) => (
             <Grid key={article.id} item xs={12} sm={6} md={5} lg={4} xl={3}>
               <ArticleCard key={article.id} article={article} />
@@ -96,6 +109,10 @@ export default function TabBar(props) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container spacing={4}>
+          <Grid item xs={12} container justify="space-between ">
+            <Typography variant="h5">Filter</Typography>
+          </Grid>
+          <Divider className={classes.divider} />
           {articles.map((article) => (
             <Grid key={article.id} item xs={12} sm={6} md={5} lg={4} xl={3}>
               <ArticleCard key={article.id} article={article} />
@@ -112,6 +129,18 @@ export default function TabBar(props) {
                 <ArticleCard key={article.id} article={article} />
               </Grid>
             ))}
+        </Grid>
+        <Grid item container justify="flex-end">
+          <Fab
+            color="secondary"
+            variant="extended"
+            aria-label="add"
+            component={Link}
+            to="/articles/new"
+          >
+            <AddIcon className={classes.extendedIcon} />
+            Add Article
+          </Fab>
         </Grid>
       </TabPanel>
     </div>

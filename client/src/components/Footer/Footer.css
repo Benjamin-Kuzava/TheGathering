@@ -1,10 +1,11 @@
 footer {
   background: #292f3c;
-  height: 15rem;
-  position: absolute;
-  bottom: 0;
+  /* height: 15rem; */
+  /* position: absolute;
+  bottom: 0; */
   color: #eceef7;
-  width: fit-content;
+  margin: 0;
+  width: 50%;
 }
 
 .footer-content > a {
@@ -26,6 +27,5 @@ footer {
 }
 
 .footer-content a:hover::after {
-  /* background-color: black; */
   transform: scaleX(1);
 }

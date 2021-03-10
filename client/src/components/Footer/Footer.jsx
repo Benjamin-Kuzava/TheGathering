@@ -19,16 +19,13 @@ const Footer = () => {
       justify="center"
       alignItems="center"
       component="footer"
-      spacing={4}
+      // spacing={4}
     >
       <Grid item container direction="column" xs={2} className="footer-content">
         <Typography variant="subtitle1">Navigation</Typography>
         <Divider className={classes.divider} />
         <Typography variant="caption" component={Link} to="#">
           Home
-        </Typography>
-        <Typography variant="caption" component={Link} to="#">
-          Articles
         </Typography>
         <Typography variant="caption" component={Link} to="#">
           Create

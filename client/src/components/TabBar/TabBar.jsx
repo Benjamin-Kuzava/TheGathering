@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -7,7 +7,15 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { UserContext } from "../../utilities/UserContext";
-import { Divider, Fab, Grid } from "@material-ui/core";
+import {
+  Divider,
+  Fab,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import ArticleCard from "../ArticleCard/ArticleCard";
 import { Link } from "react-router-dom";
@@ -69,16 +77,28 @@ const useStyles = makeStyles((theme) => ({
   extendedIcon: {
     marginRight: theme.spacing(0.5),
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 export default function TabBar(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [queriedCategory, setQueriedCategory] = useState("");
   const { currentUser } = useContext(UserContext);
   const { articles } = props;
 
-  const handleChange = (event, newValue) => {
+  const handleTabChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleChange = (event) => {
+    setQueriedCategory(event.target.value);
   };
 
   return (
@@ -86,7 +106,7 @@ export default function TabBar(props) {
       <AppBar position="static">
         <StyledTabs
           value={value}
-          onChange={handleChange}
+          onChange={handleTabChange}
           aria-label="simple tabs example"
         >
           <Tab label="Featured" {...a11yProps(0)} />
@@ -110,7 +130,19 @@ export default function TabBar(props) {
       <TabPanel value={value} index={1}>
         <Grid container spacing={4}>
           <Grid item xs={12} container justify="space-between ">
-            <Typography variant="h5">Filter</Typography>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="select-label">Category</InputLabel>
+              <Select
+                labelId="select-label"
+                id="simple-select"
+                value={queriedCategory}
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           <Divider className={classes.divider} />
           {articles.map((article) => (

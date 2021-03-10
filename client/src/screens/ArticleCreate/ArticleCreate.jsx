@@ -37,7 +37,7 @@ const ArticleCreate = (props) => {
       <Grid item xs={12}>
         <Banner isDetail />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={11} md={8}>
         <form
           className="create-form"
           onSubmit={(e) => {

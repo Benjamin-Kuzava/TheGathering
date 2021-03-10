@@ -1,9 +1,21 @@
-import { Button, Grid, TextField } from "@material-ui/core";
+import {
+  Button,
+  Grid,
+  makeStyles,
+  TextField,
+  useMediaQuery,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Banner from "../../components/Banner/Banner";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useHistory, useParams } from "react-router";
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginTop: "2em",
+  },
+}));
 
 const ArticleEdit = (props) => {
   const [richText, setRichText] = useState("");
@@ -18,6 +30,7 @@ const ArticleEdit = (props) => {
   const { title, content, img_url, summary } = formData;
   const history = useHistory();
   const { id } = useParams();
+  const classes = useStyles();
 
   useEffect(() => {
     const prefillFormData = () => {
@@ -31,6 +44,8 @@ const ArticleEdit = (props) => {
     };
     if (articles.length) prefillFormData();
   }, [articles, id]);
+
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   const handleRTChange = (e, editor) => {
     const richText = editor.getData();
@@ -54,7 +69,7 @@ const ArticleEdit = (props) => {
       <Grid item xs={12}>
         <Banner isDetail />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={11} md={8}>
         <form
           className="create-form"
           onSubmit={(e) => {
@@ -107,17 +122,34 @@ const ArticleEdit = (props) => {
             onChange={handleRTChange}
             data={content}
           />
-          <Button type="submit" variant="contained" color="primary">
-            Submit Changes
-          </Button>
-          <Button
-            type="submit"
-            variant="outlined"
-            color="primary"
-            onClick={() => history.push(`/articles/${id}`)}
+          <Grid
+            item
+            container
+            justify={isSmallScreen ? "space-between" : "flex-start"}
+            spacing={1}
           >
-            Discard Changes
-          </Button>
+            <Grid item>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Submit Changes
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                type="submit"
+                variant="outlined"
+                color="primary"
+                className={classes.button}
+                onClick={() => history.push(`/articles/`)}
+              >
+                Discard Changes
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Grid>
     </Grid>

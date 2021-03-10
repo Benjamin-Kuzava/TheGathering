@@ -50,6 +50,7 @@ function App() {
     setCurrentUser(null);
     localStorage.removeItem("authToken");
     removeToken();
+    history.push("/login");
   };
 
   return (

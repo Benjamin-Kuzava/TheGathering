@@ -61,7 +61,6 @@ const MainContainer = () => {
 
   return (
     <Switch>
-      {/* {!currentUser && <Redirect to="/" />} */}
       <Route path="/articles/new">
         <ArticleCreate
           handleCreate={handleCreate}

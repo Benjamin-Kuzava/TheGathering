@@ -7,15 +7,15 @@ import {
   Typography,
   useMediaQuery,
 } from "@material-ui/core";
+import parse from "html-react-parser";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import Banner from "../../components/Banner/Banner";
 import { getOneArticle } from "../../services/articles";
 import { UserContext } from "../../utilities/UserContext";
 import { formatDate } from "../../utilities/utilities";
 import "./ArticleDetail.css";
-import parse from "html-react-parser";
-import ArticleCard from "../../components/ArticleCard/ArticleCard";
 
 const useStyles = makeStyles((theme) => ({
   recommended: {

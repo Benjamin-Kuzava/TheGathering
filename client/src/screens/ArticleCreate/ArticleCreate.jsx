@@ -1,3 +1,5 @@
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
   Button,
   Grid,
@@ -7,8 +9,6 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import Banner from "../../components/Banner/Banner";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "./ArticleCreate.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ArticleCreate = (props) => {
-  const [richText, setRichText] = useState("asdfasd");
+  const [richText, setRichText] = useState("");
   const [formData, setformData] = useState({
     title: "",
     content: richText,
@@ -34,7 +34,7 @@ const ArticleCreate = (props) => {
   const classes = useStyles();
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
-  const handleRTChange = (e, editor) => {
+  const handleRichTextChange = (e, editor) => {
     const richText = editor.getData();
     setRichText(richText);
     setformData((prevState) => ({
@@ -65,7 +65,6 @@ const ArticleCreate = (props) => {
           }}
         >
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth
@@ -79,7 +78,6 @@ const ArticleCreate = (props) => {
             color="secondary"
           />
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth
@@ -92,7 +90,6 @@ const ArticleCreate = (props) => {
             color="secondary"
           />
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth
@@ -105,7 +102,7 @@ const ArticleCreate = (props) => {
             onChange={handleChange}
             color="secondary"
           />
-          <CKEditor editor={ClassicEditor} onChange={handleRTChange} />
+          <CKEditor editor={ClassicEditor} onChange={handleRichTextChange} />
           <Button
             type="submit"
             variant="contained"

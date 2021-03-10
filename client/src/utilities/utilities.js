@@ -16,8 +16,7 @@ export const capitalize = (string) => {
 //   )
 //   .map((article) => <ArticleCard key={article.id} article={article} />);
 
-{
-  /* <Grid
+/* <Grid
           item
           xs={12}
           container
@@ -35,4 +34,3 @@ export const capitalize = (string) => {
           <Divider className={classes.divider} />
           {sameCategoryJSX}
         </Grid> */
-}

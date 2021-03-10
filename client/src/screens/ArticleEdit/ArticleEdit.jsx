@@ -78,7 +78,6 @@ const ArticleEdit = (props) => {
           }}
         >
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth
@@ -91,7 +90,6 @@ const ArticleEdit = (props) => {
             color="secondary"
           />
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth
@@ -104,7 +102,6 @@ const ArticleEdit = (props) => {
             color="secondary"
           />
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth

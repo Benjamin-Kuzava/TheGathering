@@ -1,7 +1,7 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import "./Banner.css";
 import Background from "../../assets/urza.jpg";
+import "./Banner.css";
 
 const useStyles = makeStyles(() => ({
   title: {

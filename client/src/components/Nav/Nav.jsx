@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "3px",
   },
   button: {
-    // background: "#444",
     marginRight: "2em",
   },
   navbar: {

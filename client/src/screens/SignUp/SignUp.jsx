@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import { IconButton, InputAdornment } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { IconButton, InputAdornment } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import React, { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -98,7 +98,6 @@ const SignUp = (props) => {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                variant="standard"
                 margin="normal"
                 required
                 fullWidth
@@ -112,7 +111,6 @@ const SignUp = (props) => {
             </Grid>
           </Grid>
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth
@@ -124,7 +122,6 @@ const SignUp = (props) => {
             onChange={handleChange}
           />
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth
@@ -136,7 +133,6 @@ const SignUp = (props) => {
             onChange={handleChange}
           />
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth
@@ -163,7 +159,6 @@ const SignUp = (props) => {
             }}
           />
           <TextField
-            variant="standard"
             margin="normal"
             required
             fullWidth

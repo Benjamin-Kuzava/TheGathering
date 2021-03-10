@@ -38,10 +38,10 @@ const ArticleCard = (props) => {
           title={`Image for: ${props.article.title}`}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" component="div">
             {props.article.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="textSecondary" component="div">
             {props.article.summary}
           </Typography>
         </CardContent>
@@ -56,7 +56,7 @@ const ArticleCard = (props) => {
           >
             Read More
           </Button>
-          <Typography variant="caption">
+          <Typography variant="caption" component="div">
             {formatDate(props.article.created_at)}
           </Typography>
         </Grid>

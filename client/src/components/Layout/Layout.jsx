@@ -1,6 +1,6 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import React from "react";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import "./Layout.css";
 

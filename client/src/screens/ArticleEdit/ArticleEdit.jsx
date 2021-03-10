@@ -137,11 +137,10 @@ const ArticleEdit = (props) => {
             </Grid>
             <Grid item>
               <Button
-                type="submit"
                 variant="outlined"
                 color="primary"
                 className={classes.button}
-                onClick={() => history.push(`/articles/`)}
+                onClick={() => history.push(`/articles/${id}`)}
               >
                 Discard Changes
               </Button>

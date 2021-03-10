@@ -28,10 +28,10 @@ const Banner = (props) => {
           : `url(${props.article?.img_url})`,
       }}
     >
-      <Typography variant="h2" className={classes.title}>
+      <Typography variant="h2" className={classes.title} component="div">
         {isDetail ? "The Gathering" : ""}
       </Typography>
-      <Typography variant="h4" className={classes.caption}>
+      <Typography variant="h4" className={classes.caption} component="div">
         {isDetail ? "MTG Articles from Standard to Pauper" : ""}
       </Typography>
     </header>

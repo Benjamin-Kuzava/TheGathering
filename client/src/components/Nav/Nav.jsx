@@ -1,7 +1,6 @@
 import { Grid } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -56,16 +55,6 @@ const Nav = (props) => {
               THE GATHERING
             </Typography>
           </Grid>
-          <ButtonGroup variant="text" className={classes.button}>
-            <Button color="inherit" component={NavLink} to="/">
-              Articles
-            </Button>
-            {currentUser?.username && (
-              <Button color="inherit" component={NavLink} to="/articles/new">
-                Create
-              </Button>
-            )}
-          </ButtonGroup>
           <Grid item>
             {!currentUser ? (
               <>

@@ -48,8 +48,8 @@ const ArticleDetail = (props) => {
   const sameAuthorJSX = articles
     .filter((a) => a.user_id === article?.user_id && a.id !== article?.id)
     .map((article) => (
-      <Grid item>
-        <ArticleCard key={article.id} article={article} />
+      <Grid item key={article.id}>
+        <ArticleCard article={article} />
       </Grid>
     ));
 

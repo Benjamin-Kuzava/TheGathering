@@ -1,8 +1,25 @@
-import { Button, Grid, TextField } from "@material-ui/core";
+import {
+  Button,
+  Grid,
+  makeStyles,
+  TextField,
+  useMediaQuery,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import Banner from "../../components/Banner/Banner";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import "./ArticleCreate.css";
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginTop: "2em",
+  },
+  buttonSmall: {
+    marginTop: "2em",
+    width: "100%",
+  },
+}));
 
 const ArticleCreate = (props) => {
   const [richText, setRichText] = useState("asdfasd");
@@ -14,6 +31,8 @@ const ArticleCreate = (props) => {
   });
 
   const { title, img_url, summary, handleCreate } = formData;
+  const classes = useStyles();
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   const handleRTChange = (e, editor) => {
     const richText = editor.getData();
@@ -87,7 +106,12 @@ const ArticleCreate = (props) => {
             color="secondary"
           />
           <CKEditor editor={ClassicEditor} onChange={handleRTChange} />
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={isSmallScreen ? classes.buttonSmall : classes.button}
+          >
             Submit
           </Button>
         </form>

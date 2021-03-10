@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
   },
   mainContainer: {
     paddingBottom: "15rem",
+    // flexGrow: 1,
   },
 }));
 
@@ -22,6 +23,7 @@ const Home = (props) => {
       container
       spacing={4}
       justify="center"
+      // alignItems="center"
       className={classes.mainContainer}
     >
       <Grid item xs={12}>
@@ -31,13 +33,25 @@ const Home = (props) => {
         item
         container
         spacing={4}
-        xs={8}
+        xs={12}
+        md={10}
+        lg={8}
         component={Paper}
         elevation={3}
         className={classes.main}
       >
         {articles.map((article) => (
-          <Grid key={article.id} item xs={3}>
+          <Grid
+            key={article.id}
+            item
+            // container
+            // justify="center"
+            xs={12}
+            sm={6}
+            md={5}
+            lg={4}
+            xl={3}
+          >
             <ArticleCard key={article.id} article={article} />
           </Grid>
         ))}

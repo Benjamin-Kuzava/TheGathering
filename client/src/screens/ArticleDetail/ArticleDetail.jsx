@@ -1,11 +1,11 @@
 import {
   Button,
-  capitalize,
   Divider,
   Grid,
   makeStyles,
   Paper,
   Typography,
+  useMediaQuery,
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
@@ -17,7 +17,7 @@ import "./ArticleDetail.css";
 import parse from "html-react-parser";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   recommended: {
     height: "fit-content",
     marginTop: "2em",
@@ -25,6 +25,11 @@ const useStyles = makeStyles(() => ({
   divider: {
     marginBottom: "1em",
     backgroundColor: "black",
+  },
+  title: {
+    [theme.breakpoints.down("sm")]: {
+      // variant: "h6",
+    },
   },
 }));
 
@@ -43,25 +48,25 @@ const ArticleDetail = (props) => {
     fetchArticle();
   }, [id, articles]);
 
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  const titleProps = {
+    variant: isSmallScreen ? "h4" : "h3",
+  };
+
   const sameAuthorJSX = articles
     .filter((a) => a.user_id === article?.user_id && a.id !== article?.id)
     .map((article) => <ArticleCard key={article.id} article={article} />);
-
-  // const sameCategoryJSX = articles
-  //   .filter(
-  //     (a) =>
-  //       a.categories[0].name === article?.categories[0].name &&
-  //       a.id !== article?.id
-  //   )
-  //   .map((article) => <ArticleCard key={article.id} article={article} />);
 
   return (
     <Grid container spacing={4} justify="space-evenly">
       <Grid item xs={12}>
         <Banner article={article} />
       </Grid>
-      <Grid item xs={5}>
-        <Typography variant="h3">{article?.title}</Typography>
+      <Grid item md={6} xs={11}>
+        <Typography {...titleProps} className={classes.title}>
+          {article?.title}
+        </Typography>
         <Typography variant="subtitle1">{`${article?.user.first_name} ${
           article?.user.last_name
         } · ${formatDate(article?.created_at)}`}</Typography>
@@ -80,11 +85,14 @@ const ArticleDetail = (props) => {
           ""
         )}
         <hr />
-        {article?.content ? parse(article?.content) : ""}
+        <fragment className="article-content">
+          {article?.content ? parse(article?.content) : ""}
+        </fragment>
       </Grid>
       <Grid
         item
-        xs={2}
+        xs={10}
+        md={3}
         container
         direction="column"
         spacing={4}
@@ -106,24 +114,6 @@ const ArticleDetail = (props) => {
           <Divider className={classes.divider} />
           {sameAuthorJSX}
         </Grid>
-        {/* <Grid
-          item
-          xs={12}
-          container
-          direction="column"
-          spacing={4}
-          alignItems="center"
-          component={Paper}
-          elevation={3}
-          className={classes.recommended}
-        >
-          <Typography variant="button">
-            {article &&
-              `More ${capitalize(article?.categories[0].name)} Content`}
-          </Typography>
-          <Divider className={classes.divider} />
-          {sameCategoryJSX}
-        </Grid> */}
       </Grid>
     </Grid>
   );

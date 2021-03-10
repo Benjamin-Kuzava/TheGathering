@@ -26,11 +26,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1em",
     backgroundColor: "black",
   },
-  title: {
-    [theme.breakpoints.down("sm")]: {
-      // variant: "h6",
-    },
-  },
 }));
 
 const ArticleDetail = (props) => {
@@ -50,13 +45,13 @@ const ArticleDetail = (props) => {
 
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
-  const titleProps = {
-    variant: isSmallScreen ? "h4" : "h3",
-  };
-
   const sameAuthorJSX = articles
     .filter((a) => a.user_id === article?.user_id && a.id !== article?.id)
-    .map((article) => <ArticleCard key={article.id} article={article} />);
+    .map((article) => (
+      <Grid item>
+        <ArticleCard key={article.id} article={article} />
+      </Grid>
+    ));
 
   return (
     <Grid container spacing={4} justify="space-evenly">
@@ -64,7 +59,10 @@ const ArticleDetail = (props) => {
         <Banner article={article} />
       </Grid>
       <Grid item md={6} xs={11}>
-        <Typography {...titleProps} className={classes.title}>
+        <Typography
+          variant={isSmallScreen ? "h5" : "h3"}
+          className={classes.title}
+        >
           {article?.title}
         </Typography>
         <Typography variant="subtitle1">{`${article?.user.first_name} ${
@@ -85,14 +83,15 @@ const ArticleDetail = (props) => {
           ""
         )}
         <hr />
-        <fragment className="article-content">
+        <div className="article-content">
           {article?.content ? parse(article?.content) : ""}
-        </fragment>
+        </div>
       </Grid>
       <Grid
         item
         xs={10}
-        md={3}
+        md={5}
+        lg={3}
         container
         direction="column"
         spacing={4}

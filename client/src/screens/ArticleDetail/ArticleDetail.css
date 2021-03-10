@@ -5,6 +5,10 @@ blockquote {
   border-left: 5px solid #6a604c;
 }
 
+.article-content {
+  margin-top: 2em;
+}
+
 @media screen and (max-width: 600px) {
   .article-content p {
     font-size: 1.5rem;

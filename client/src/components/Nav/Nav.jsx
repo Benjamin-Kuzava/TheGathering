@@ -1,3 +1,4 @@
+import { Grid } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     textAlign: "left",
-    flexGrow: 1,
+    // flexGrow: 1,
     letterSpacing: "3px",
   },
   button: {
@@ -39,20 +40,24 @@ const Nav = (props) => {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.navbar}>
-        <Toolbar>
-          <Typography
-            variant="h5"
-            className={classes.title}
-            component={NavLink}
-            to="/"
-          >
-            THE GATHERING
-          </Typography>
+        <Toolbar
+          container
+          justify="space-between"
+          alignItems="center"
+          component={Grid}
+        >
+          <Grid item>
+            <Typography
+              variant="h5"
+              className={classes.title}
+              component={NavLink}
+              to="/"
+            >
+              THE GATHERING
+            </Typography>
+          </Grid>
           <ButtonGroup variant="text" className={classes.button}>
             <Button color="inherit" component={NavLink} to="/">
-              Home
-            </Button>
-            <Button color="inherit" component={NavLink} to="/articles">
               Articles
             </Button>
             {currentUser?.username && (
@@ -61,25 +66,27 @@ const Nav = (props) => {
               </Button>
             )}
           </ButtonGroup>
-          {!currentUser ? (
-            <>
-              <NavLink to="/login">
-                <Button color="inherit">Login</Button>
-              </NavLink>
-              <NavLink to="/register">
-                <Button color="inherit">Register</Button>
-              </NavLink>
-            </>
-          ) : (
-            <Button
-              onClick={handleLogout}
-              variant="contained"
-              color="secondary"
-              startIcon={<AccountCircle />}
-            >
-              Logout
-            </Button>
-          )}
+          <Grid item>
+            {!currentUser ? (
+              <>
+                <Button color="inherit" component={NavLink} to="/login">
+                  Login
+                </Button>
+                <Button color="inherit" component={NavLink} to="/register">
+                  Register
+                </Button>
+              </>
+            ) : (
+              <Button
+                onClick={handleLogout}
+                variant="contained"
+                color="secondary"
+                startIcon={<AccountCircle />}
+              >
+                Logout
+              </Button>
+            )}
+          </Grid>
         </Toolbar>
       </AppBar>
     </div>

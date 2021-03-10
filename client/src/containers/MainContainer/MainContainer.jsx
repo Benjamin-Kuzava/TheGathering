@@ -85,9 +85,6 @@ const MainContainer = () => {
           handleDelete={handleDelete}
         />
       </Route>
-      <Route path="/articles">
-        <Articles articles={articles} categories={categories} />
-      </Route>
       <Route path="/">
         <Home articles={articles} categories={categories} />
       </Route>

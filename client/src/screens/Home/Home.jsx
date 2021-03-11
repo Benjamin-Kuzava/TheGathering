@@ -7,6 +7,7 @@ import TabBar from "../../components/TabBar/TabBar";
 const useStyles = makeStyles(() => ({
   main: {
     marginTop: "-5em",
+    // minHeight: "10em",
   },
   mainContainer: {
     paddingBottom: "15rem",

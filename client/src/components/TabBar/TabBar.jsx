@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: "100%",
     backgroundColor: theme.palette.background.paper,
+    minHeight: "10em",
   },
   divider: {
     color: "black",
@@ -84,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  addButton: {
+    marginTop: theme.spacing(4),
   },
 }));
 
@@ -190,6 +194,7 @@ export default function TabBar(props) {
             aria-label="add"
             component={Link}
             to="/articles/new"
+            className={classes.addButton}
           >
             <AddIcon className={classes.extendedIcon} />
             Add Article

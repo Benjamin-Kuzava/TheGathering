@@ -19,6 +19,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2em",
     width: "100%",
   },
+  formControl: {
+    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const ArticleCreate = (props) => {

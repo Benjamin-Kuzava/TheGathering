@@ -65,6 +65,7 @@ const MainContainer = () => {
           handleCreate={handleCreate}
           articles={articles}
           setArticles={setArticles}
+          categories={categories}
           setCatories={setCatories}
         />
       </Route>
@@ -73,16 +74,13 @@ const MainContainer = () => {
           articles={articles}
           handleUpdate={handleUpdate}
           setArticles={setArticles}
+          categories={categories}
           setCatories={setCatories}
           handleDelete={handleDelete}
         />
       </Route>
       <Route path="/articles/:id">
-        <ArticleDetail
-          articles={articles}
-          categories={categories}
-          handleDelete={handleDelete}
-        />
+        <ArticleDetail articles={articles} categories={categories} />
       </Route>
       <Route path="/">
         <Home articles={articles} categories={categories} />

@@ -26,6 +26,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1em",
     backgroundColor: "black",
   },
+  button: {
+    margin: "2em 0",
+  },
+  container: {
+    marginBottom: "3rem",
+  },
 }));
 
 const ArticleDetail = (props) => {
@@ -54,7 +60,12 @@ const ArticleDetail = (props) => {
     ));
 
   return (
-    <Grid container spacing={4} justify="space-evenly">
+    <Grid
+      container
+      spacing={4}
+      justify="space-evenly"
+      className={classes.container}
+    >
       <Grid item xs={12}>
         <Banner article={article} />
       </Grid>
@@ -75,6 +86,7 @@ const ArticleDetail = (props) => {
               color="secondary"
               component={Link}
               to={`/articles/${article?.id}/edit`}
+              className={classes.button}
             >
               Edit Content
             </Button>

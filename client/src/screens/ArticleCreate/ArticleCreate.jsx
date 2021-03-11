@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  container: {
+    marginBottom: "4rem",
+  },
 }));
 
 const ArticleCreate = (props) => {
@@ -60,7 +63,7 @@ const ArticleCreate = (props) => {
   };
 
   return (
-    <Grid container spacing={4} justify="center">
+    <Grid container spacing={4} justify="center" className={classes.container}>
       <Grid item xs={12}>
         <Banner isDetail />
       </Grid>

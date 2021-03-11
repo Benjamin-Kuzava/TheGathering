@@ -1,12 +1,7 @@
 import {
   Button,
-  capitalize,
-  FormControl,
   Grid,
-  InputLabel,
   makeStyles,
-  MenuItem,
-  Select,
   TextField,
   useMediaQuery,
 } from "@material-ui/core";
@@ -15,11 +10,13 @@ import Banner from "../../components/Banner/Banner";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useHistory, useParams } from "react-router";
-import { addCategoryToArticle } from "../../services/categories";
 
 const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: "2em",
+  },
+  container: {
+    marginBottom: "4rem",
   },
 }));
 
@@ -31,9 +28,9 @@ const ArticleEdit = (props) => {
     img_url: "",
     summary: "",
   });
-  const [selectedCategory, setSelectedCategory] = useState("");
+  // const [selectedCategory, setSelectedCategory] = useState("");
 
-  const { handleUpdate, handleDelete, articles, categories } = props;
+  const { handleUpdate, handleDelete, articles } = props;
   const { title, content, img_url, summary } = formData;
   const history = useHistory();
   const { id } = useParams();
@@ -71,12 +68,12 @@ const ArticleEdit = (props) => {
     }));
   };
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+  // const handleCategoryChange = (event) => {
+  //   setSelectedCategory(event.target.value);
+  // };
 
   return (
-    <Grid container spacing={4} justify="center">
+    <Grid container spacing={4} justify="center" className={classes.container}>
       <Grid item xs={12}>
         <Banner isDetail />
       </Grid>
@@ -125,33 +122,7 @@ const ArticleEdit = (props) => {
             onChange={handleChange}
             color="secondary"
           />
-          <FormControl
-            className={classes.formControl}
-            onSubmit={(e) => {
-              e.preventDefault();
-              addCategoryToArticle(selectedCategory.id, id);
-            }}
-          >
-            <InputLabel id="select-label">Select Category</InputLabel>
-            <Select
-              labelId="select-label"
-              id="simple-select"
-              value={selectedCategory}
-              onChange={handleCategoryChange}
-              className={classes.select}
-              required
-            >
-              <MenuItem value="default" disabled>
-                Select Categories
-              </MenuItem>
-              {categories.map((category) => (
-                <MenuItem value={category.name} key={category.id}>
-                  {capitalize(category.name)}
-                </MenuItem>
-              ))}
-            </Select>
-            <Button type="submit">Add Category</Button>
-          </FormControl>
+
           <CKEditor
             editor={ClassicEditor}
             onChange={handleRTChange}

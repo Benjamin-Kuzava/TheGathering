@@ -7,6 +7,7 @@ const useStyles = makeStyles({
   divider: {
     backgroundColor: "#eceef7",
     marginBottom: ".05em",
+    width: "5em",
   },
 });
 
@@ -14,14 +15,16 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      justify="center"
-      alignItems="center"
-      component="footer"
-      // spacing={4}
-    >
-      <Grid item container direction="column" xs={2} className="footer-content">
+    <Grid container justify="center" alignItems="center" component="footer">
+      <Grid
+        item
+        container
+        direction="column"
+        xs={2}
+        className="footer-content"
+        justify="center"
+        alignItems="center"
+      >
         <Typography variant="subtitle1">Navigation</Typography>
         <Divider className={classes.divider} />
         <Typography variant="caption" component={Link} to="#">
@@ -36,9 +39,6 @@ const Footer = () => {
         <Typography variant="caption" component={Link} to="#">
           Sign Up
         </Typography>
-      </Grid>
-      <Grid item xs={2}>
-        Right Side
       </Grid>
     </Grid>
   );

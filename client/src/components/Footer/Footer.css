@@ -1,16 +1,15 @@
 footer {
   background: #292f3c;
-  /* height: 15rem; */
-  /* position: absolute;
-  bottom: 0; */
   color: #eceef7;
   margin: 0;
   width: 50%;
+  padding: 1em;
 }
 
 .footer-content > a {
   padding: 0.5em 0;
   position: relative;
+  text-align: center;
 }
 
 .footer-content a::after {

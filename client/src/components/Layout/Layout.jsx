@@ -6,8 +6,6 @@ import "./Layout.css";
 
 const useStyles = makeStyles({
   pageContainer: {
-    // position: "relative",
-    // minHeight: "100vh",
     minHeight: "100vh",
     display: "grid",
     gridTemplateRows: "auto 1fr auto",
@@ -20,7 +18,7 @@ const Layout = (props) => {
 
   return (
     <div className="App">
-      <Grid container spacing={4} className={classes.pageContainer}>
+      <Grid container className={classes.pageContainer}>
         <Grid item xs={12}>
           <Nav handleLogout={props.handleLogout} />
         </Grid>
@@ -28,7 +26,7 @@ const Layout = (props) => {
           {props.children}
         </Grid>
         <Grid item xs={12}>
-          {/* <Footer /> */}
+          <Footer />
         </Grid>
       </Grid>
     </div>

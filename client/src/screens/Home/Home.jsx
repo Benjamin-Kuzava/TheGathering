@@ -18,12 +18,7 @@ const Home = (props) => {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      spacing={4}
-      justify="center"
-      className={classes.mainContainer}
-    >
+    <Grid container justify="center" className={classes.mainContainer}>
       <Grid item xs={12}>
         <Banner isDetail />
       </Grid>

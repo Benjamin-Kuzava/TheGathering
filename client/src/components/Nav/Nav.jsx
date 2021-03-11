@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid, Slide, useScrollTrigger } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,6 +10,17 @@ import { NavLink } from "react-router-dom";
 import { UserContext } from "../../utilities/UserContext";
 import "./Nav.css";
 
+function HideOnScroll(props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({ target: window ? window() : undefined });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -19,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     textAlign: "left",
-    // flexGrow: 1,
     letterSpacing: "3px",
   },
   button: {
@@ -38,46 +48,48 @@ const Nav = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.navbar}>
-        <Toolbar
-          container
-          justify="space-between"
-          alignItems="center"
-          component={Grid}
-        >
-          <Grid item>
-            <Typography
-              variant="h5"
-              className={classes.title}
-              component={NavLink}
-              to="/"
-            >
-              THE GATHERING
-            </Typography>
-          </Grid>
-          <Grid item>
-            {!currentUser ? (
-              <>
-                <Button color="inherit" component={NavLink} to="/login">
-                  Login
-                </Button>
-                <Button color="inherit" component={NavLink} to="/register">
-                  Register
-                </Button>
-              </>
-            ) : (
-              <Button
-                onClick={handleLogout}
-                variant="contained"
-                color="secondary"
-                startIcon={<AccountCircle />}
+      <HideOnScroll {...props}>
+        <AppBar position="fixed" className={classes.navbar}>
+          <Toolbar
+            component={Grid}
+            container
+            justify="space-between"
+            alignItems="center"
+          >
+            <Grid item>
+              <Typography
+                variant="h5"
+                className={classes.title}
+                component={NavLink}
+                to="/"
               >
-                Logout
-              </Button>
-            )}
-          </Grid>
-        </Toolbar>
-      </AppBar>
+                THE GATHERING
+              </Typography>
+            </Grid>
+            <Grid item>
+              {!currentUser ? (
+                <>
+                  <Button color="inherit" component={NavLink} to="/login">
+                    Login
+                  </Button>
+                  <Button color="inherit" component={NavLink} to="/register">
+                    Register
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  onClick={handleLogout}
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<AccountCircle />}
+                >
+                  Logout
+                </Button>
+              )}
+            </Grid>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
     </div>
   );
 };

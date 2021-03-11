@@ -83,10 +83,7 @@ const ArticleCreate = (props) => {
           className="create-form"
           onSubmit={(e) => {
             e.preventDefault();
-            const category = categories.find(
-              (category) => category.name === selectedCategory
-            );
-            props.handleCreate(formData, category.id);
+            props.handleCreate(formData);
           }}
         >
           <TextField

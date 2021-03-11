@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ArticleCreate = (props) => {
-  const [queriedCategory, setQueriedCategory] = useState("default");
+  const [selectedCategory, setSelectedCategory] = useState("default");
   const [richText, setRichText] = useState("");
   const [formData, setformData] = useState({
     title: "",
@@ -70,7 +70,7 @@ const ArticleCreate = (props) => {
   };
 
   const handleCategoryChange = (event) => {
-    setQueriedCategory(event.target.value);
+    setSelectedCategory(event.target.value);
   };
 
   return (
@@ -83,7 +83,10 @@ const ArticleCreate = (props) => {
           className="create-form"
           onSubmit={(e) => {
             e.preventDefault();
-            props.handleCreate(formData);
+            const category = categories.find(
+              (category) => category.name === selectedCategory
+            );
+            props.handleCreate(formData, category.id);
           }}
         >
           <TextField
@@ -129,7 +132,7 @@ const ArticleCreate = (props) => {
             <Select
               labelId="select-label"
               id="simple-select"
-              value={queriedCategory}
+              value={selectedCategory}
               onChange={handleCategoryChange}
               className={classes.select}
             >

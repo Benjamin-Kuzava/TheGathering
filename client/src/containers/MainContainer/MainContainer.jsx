@@ -37,9 +37,10 @@ const MainContainer = (props) => {
     fetchCategories();
   }, []);
 
-  const handleCreate = async (formData) => {
+  const handleCreate = async (formData, categoryId) => {
     const newArticle = await postArticle(formData);
     setArticles((prevState) => [...prevState, newArticle]);
+    handleCategoryAdd(categoryId, newArticle.id);
     history.push("/");
   };
 

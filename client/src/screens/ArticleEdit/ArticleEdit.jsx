@@ -46,7 +46,13 @@ const ArticleEdit = (props) => {
   });
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const { handleUpdate, handleDelete, articles, categories } = props;
+  const {
+    handleUpdate,
+    handleDelete,
+    handleCategoryAdd,
+    articles,
+    categories,
+  } = props;
   const { title, content, img_url, summary } = formData;
   const history = useHistory();
   const { id } = useParams();
@@ -86,6 +92,13 @@ const ArticleEdit = (props) => {
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
+  };
+
+  const handleCategoryAddition = () => {
+    const category = categories.find(
+      (category) => category.name === selectedCategory
+    );
+    handleCategoryAdd(category.id, id);
   };
 
   return (
@@ -160,6 +173,7 @@ const ArticleEdit = (props) => {
               variant="outlined"
               color="secondary"
               className={classes.buttonTwo}
+              onClick={() => handleCategoryAddition()}
             >
               Add Category
             </Button>

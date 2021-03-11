@@ -10,7 +10,10 @@ import {
   postArticle,
   putArticle,
 } from "../../services/articles";
-import { getAllCategories } from "../../services/categories";
+import {
+  addCategoryToArticle,
+  getAllCategories,
+} from "../../services/categories";
 import "./MainContainer.css";
 
 const MainContainer = (props) => {
@@ -59,6 +62,19 @@ const MainContainer = (props) => {
     history.push(`/articles/${id}`);
   };
 
+  const handleCategoryAdd = async (categoryId, articleId) => {
+    const updatedArticle = await addCategoryToArticle(categoryId, articleId);
+    setArticles((prevState) =>
+      prevState.map((article) => {
+        return article.articleId === Number(articleId)
+          ? updatedArticle
+          : article;
+      })
+    );
+    props.setToggleFetch((prev) => !prev);
+    history.push(`/articles/${articleId}`);
+  };
+
   return (
     <Switch>
       <Route exact path="/articles/new">
@@ -67,7 +83,7 @@ const MainContainer = (props) => {
           articles={articles}
           setArticles={setArticles}
           categories={categories}
-          setCatories={setCatories}
+          handleCategoryAdd={handleCategoryAdd}
         />
       </Route>
       <Route exact path="/articles/:id/edit">
@@ -76,8 +92,8 @@ const MainContainer = (props) => {
           handleUpdate={handleUpdate}
           setArticles={setArticles}
           categories={categories}
-          setCatories={setCatories}
           handleDelete={handleDelete}
+          handleCategoryAdd={handleCategoryAdd}
         />
       </Route>
       <Route exact path="/articles/:id">

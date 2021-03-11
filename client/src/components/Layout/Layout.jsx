@@ -15,18 +15,19 @@ const useStyles = makeStyles({
 
 const Layout = (props) => {
   const classes = useStyles();
+  const { handleLogout, children } = props;
 
   return (
     <div className="App">
       <Grid container className={classes.pageContainer}>
         <Grid item xs={12}>
-          <Nav handleLogout={props.handleLogout} />
+          <Nav handleLogout={handleLogout} />
         </Grid>
         <Grid item xs={12}>
-          {props.children}
+          {children}
         </Grid>
         <Grid item xs={12}>
-          <Footer handleLogout={props.handleLogout} />
+          <Footer handleLogout={handleLogout} />
         </Grid>
       </Grid>
     </div>

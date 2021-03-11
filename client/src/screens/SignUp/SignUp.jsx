@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignUp = (props) => {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     firstname: "",
@@ -41,7 +42,6 @@ const SignUp = (props) => {
     email: "",
     password: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
   const { username, firstname, lastname, email, password } = formData;
   const { handleRegister } = props;
   const { paper, avatar, form, submit } = useStyles();
@@ -58,8 +58,8 @@ const SignUp = (props) => {
     setShowPassword((prevState) => !prevState);
   };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const handleMouseDownPassword = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -83,7 +83,6 @@ const SignUp = (props) => {
           <Grid container spacing={4}>
             <Grid item xs={6}>
               <TextField
-                variant="standard"
                 margin="normal"
                 required
                 fullWidth
@@ -167,8 +166,6 @@ const SignUp = (props) => {
             type={showPassword ? "text" : "password"}
             id="password-confirmation"
             autoComplete="current-password"
-            // value={passwordConfirmation}
-            // onChange={handleChange}
             helperText="Must be at least six characters"
             InputProps={{
               endAdornment: (
@@ -196,7 +193,7 @@ const SignUp = (props) => {
           <Grid container>
             <Grid item xs={12}>
               <Link href="/login" variant="body2">
-                {"Already have an account?"}
+                "Already have an account?"
               </Link>
             </Grid>
           </Grid>

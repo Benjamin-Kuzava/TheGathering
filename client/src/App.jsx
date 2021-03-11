@@ -17,6 +17,7 @@ import { theme } from "./components/shared/Theme";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [toggleFetch, setToggleFetch] = useState(false);
   const providerValue = useMemo(
     () => ({
       currentUser,
@@ -65,7 +66,10 @@ function App() {
               <SignUp handleRegister={handleRegister} />
             </Route>
             <Route path="/">
-              <MainContainer />
+              <MainContainer
+                toggleFetch={toggleFetch}
+                setToggleFetch={setToggleFetch}
+              />
             </Route>
           </Switch>
         </Layout>

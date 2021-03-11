@@ -13,7 +13,7 @@ import {
 import { getAllCategories } from "../../services/categories";
 import "./MainContainer.css";
 
-const MainContainer = () => {
+const MainContainer = (props) => {
   const [articles, setArticles] = useState([]);
   const [categories, setCatories] = useState([]);
   const history = useHistory();
@@ -24,7 +24,7 @@ const MainContainer = () => {
       setArticles(articles);
     };
     fetchArticles();
-  }, []);
+  }, [props.toggleFetch]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -45,6 +45,7 @@ const MainContainer = () => {
     setArticles((prevState) =>
       prevState.filter((article) => article.id !== id)
     );
+    props.setToggleFetch((prev) => !prev);
     history.push("/");
   };
 
@@ -60,7 +61,7 @@ const MainContainer = () => {
 
   return (
     <Switch>
-      <Route path="/articles/new">
+      <Route exact path="/articles/new">
         <ArticleCreate
           handleCreate={handleCreate}
           articles={articles}
@@ -69,7 +70,7 @@ const MainContainer = () => {
           setCatories={setCatories}
         />
       </Route>
-      <Route path="/articles/:id/edit">
+      <Route exact path="/articles/:id/edit">
         <ArticleEdit
           articles={articles}
           handleUpdate={handleUpdate}
@@ -79,10 +80,10 @@ const MainContainer = () => {
           handleDelete={handleDelete}
         />
       </Route>
-      <Route path="/articles/:id">
+      <Route exact path="/articles/:id">
         <ArticleDetail articles={articles} categories={categories} />
       </Route>
-      <Route path="/">
+      <Route exact path="/">
         <Home articles={articles} categories={categories} />
       </Route>
     </Switch>

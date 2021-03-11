@@ -1,7 +1,12 @@
 import {
   Button,
+  capitalize,
+  FormControl,
   Grid,
+  InputLabel,
   makeStyles,
+  MenuItem,
+  Select,
   TextField,
   useMediaQuery,
 } from "@material-ui/core";
@@ -15,8 +20,19 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: "2em",
   },
+  buttonTwo: {
+    marginBottom: "1em",
+  },
   container: {
     marginBottom: "4rem",
+  },
+  formControl: {
+    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
   },
 }));
 
@@ -28,9 +44,9 @@ const ArticleEdit = (props) => {
     img_url: "",
     summary: "",
   });
-  // const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const { handleUpdate, handleDelete, articles } = props;
+  const { handleUpdate, handleDelete, articles, categories } = props;
   const { title, content, img_url, summary } = formData;
   const history = useHistory();
   const { id } = useParams();
@@ -68,9 +84,9 @@ const ArticleEdit = (props) => {
     }));
   };
 
-  // const handleCategoryChange = (event) => {
-  //   setSelectedCategory(event.target.value);
-  // };
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
 
   return (
     <Grid container spacing={4} justify="center" className={classes.container}>
@@ -122,7 +138,32 @@ const ArticleEdit = (props) => {
             onChange={handleChange}
             color="secondary"
           />
-
+          <Grid item container direction="column" alignItems="flex-start">
+            <FormControl className={classes.formControl}>
+              <InputLabel id="select-label">Categories</InputLabel>
+              <Select
+                labelId="select-label"
+                id="simple-select"
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+                className={classes.select}
+              >
+                <MenuItem value="default">All Categories</MenuItem>
+                {categories.map((category) => (
+                  <MenuItem value={category.name} key={category.id}>
+                    {capitalize(category.name)}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Button
+              variant="outlined"
+              color="secondary"
+              className={classes.buttonTwo}
+            >
+              Add Category
+            </Button>
+          </Grid>
           <CKEditor
             editor={ClassicEditor}
             onChange={handleRTChange}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { UserContext } from "../../utilities/UserContext";
 import {
+  capitalize,
   Divider,
   Fab,
   FormControl,
@@ -89,9 +90,25 @@ const useStyles = makeStyles((theme) => ({
 export default function TabBar(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [queriedCategory, setQueriedCategory] = useState("");
+  const [queriedCategory, setQueriedCategory] = useState("default");
+  const [queriedArticles, setQueriedArticles] = useState([]);
   const { currentUser } = useContext(UserContext);
-  const { articles } = props;
+  const { articles, categories } = props;
+
+  useEffect(() => {
+    const fetchQueriedProducts = () => {
+      const queried =
+        queriedCategory === "default"
+          ? articles
+          : articles.filter(
+              (article) =>
+                article.categories[0].name === queriedCategory ||
+                article.categories[1]?.name === queriedCategory
+            );
+      setQueriedArticles(queried);
+    };
+    fetchQueriedProducts();
+  }, [queriedCategory, articles]);
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
@@ -129,7 +146,7 @@ export default function TabBar(props) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container spacing={4}>
-          <Grid item xs={12} container justify="space-between ">
+          <Grid item xs={12} container justify="space-between">
             <FormControl className={classes.formControl}>
               <InputLabel id="select-label">Category</InputLabel>
               <Select
@@ -137,15 +154,19 @@ export default function TabBar(props) {
                 id="simple-select"
                 value={queriedCategory}
                 onChange={handleChange}
+                className={classes.select}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value="default">All Categories</MenuItem>
+                {categories.map((category) => (
+                  <MenuItem value={category.name} key={category.id}>
+                    {capitalize(category.name)}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
           <Divider className={classes.divider} />
-          {articles.map((article) => (
+          {queriedArticles.map((article) => (
             <Grid key={article.id} item xs={12} sm={6} md={5} lg={4} xl={3}>
               <ArticleCard key={article.id} article={article} />
             </Grid>

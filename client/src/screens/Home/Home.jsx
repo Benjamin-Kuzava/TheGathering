@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Home = (props) => {
-  const { articles } = props;
+  const { articles, categories } = props;
   const classes = useStyles();
 
   return (
@@ -38,13 +38,13 @@ const Home = (props) => {
         elevation={3}
         className={classes.main}
       >
-        <TabBar component={Grid} item xs={12} articles={articles} />
-
-        {/* {articles.map((article) => (
-          <Grid key={article.id} item xs={12} sm={6} md={5} lg={4} xl={3}>
-            <ArticleCard key={article.id} article={article} />
-          </Grid>
-        ))} */}
+        <TabBar
+          component={Grid}
+          item
+          xs={12}
+          articles={articles}
+          categories={categories}
+        />
       </Grid>
     </Grid>
   );

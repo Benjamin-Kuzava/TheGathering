@@ -128,7 +128,7 @@ const Login = (props) => {
           <Grid container>
             <Grid item xs={12}>
               <Link href="/register" variant="body2">
-                "Don't have an account?"
+                Don't have an account?
               </Link>
             </Grid>
           </Grid>

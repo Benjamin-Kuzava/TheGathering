@@ -193,7 +193,7 @@ const SignUp = (props) => {
           <Grid container>
             <Grid item xs={12}>
               <Link href="/login" variant="body2">
-                "Already have an account?"
+                Already have an account?
               </Link>
             </Grid>
           </Grid>

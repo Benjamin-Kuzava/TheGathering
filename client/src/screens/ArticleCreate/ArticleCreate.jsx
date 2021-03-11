@@ -2,8 +2,13 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import {
   Button,
+  capitalize,
+  FormControl,
   Grid,
+  InputLabel,
   makeStyles,
+  MenuItem,
+  Select,
   TextField,
   useMediaQuery,
 } from "@material-ui/core";
@@ -33,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ArticleCreate = (props) => {
+  const [queriedCategory, setQueriedCategory] = useState("default");
   const [richText, setRichText] = useState("");
   const [formData, setformData] = useState({
     title: "",
@@ -42,6 +48,7 @@ const ArticleCreate = (props) => {
   });
 
   const { title, img_url, summary } = formData;
+  const { categories } = props;
   const classes = useStyles();
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
@@ -60,6 +67,10 @@ const ArticleCreate = (props) => {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleCategoryChange = (event) => {
+    setQueriedCategory(event.target.value);
   };
 
   return (
@@ -113,6 +124,23 @@ const ArticleCreate = (props) => {
             onChange={handleChange}
             color="secondary"
           />
+          <FormControl className={classes.formControl}>
+            <InputLabel id="select-label">Filter Categories</InputLabel>
+            <Select
+              labelId="select-label"
+              id="simple-select"
+              value={queriedCategory}
+              onChange={handleCategoryChange}
+              className={classes.select}
+            >
+              <MenuItem value="default">All Categories</MenuItem>
+              {categories.map((category) => (
+                <MenuItem value={category.name} key={category.id}>
+                  {capitalize(category.name)}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <CKEditor editor={ClassicEditor} onChange={handleRichTextChange} />
           <Button
             type="submit"

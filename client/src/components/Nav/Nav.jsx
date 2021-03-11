@@ -1,4 +1,4 @@
-import { Grid, Slide, useScrollTrigger } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,18 +8,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../utilities/UserContext";
+import HideOnScroll from "./HideOnScroll";
 import "./Nav.css";
-
-function HideOnScroll(props) {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({ target: window ? window() : undefined });
-
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {

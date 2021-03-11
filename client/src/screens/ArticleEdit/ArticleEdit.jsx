@@ -89,13 +89,6 @@ const ArticleEdit = (props) => {
     setSelectedCategory(event.target.value);
   };
 
-  // const handleCategoryAddition = () => {
-  //   const category = categories.find(
-  //     (category) => category.name === selectedCategory
-  //   );
-  //   handleCategoryAdd(category.id, id);
-  // };
-
   return (
     <Grid container spacing={4} justify="center" className={classes.container}>
       <Grid item xs={12}>

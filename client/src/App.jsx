@@ -16,8 +16,8 @@ import { UserContext } from "./utilities/UserContext";
 import { theme } from "./components/shared/Theme";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
   const [toggleFetch, setToggleFetch] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const providerValue = useMemo(
     () => ({
       currentUser,

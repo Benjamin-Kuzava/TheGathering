@@ -48,7 +48,7 @@ const ArticleCreate = (props) => {
   });
 
   const { title, img_url, summary } = formData;
-  const { categories } = props;
+  const { categories, handleCreate } = props;
   const classes = useStyles();
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
@@ -69,8 +69,8 @@ const ArticleCreate = (props) => {
     }));
   };
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
   };
 
   return (
@@ -83,7 +83,7 @@ const ArticleCreate = (props) => {
           className="create-form"
           onSubmit={(e) => {
             e.preventDefault();
-            props.handleCreate(formData);
+            handleCreate(formData);
           }}
         >
           <TextField

@@ -37,7 +37,7 @@ const MainContainer = () => {
   const handleCreate = async (formData) => {
     const newArticle = await postArticle(formData);
     setArticles((prevState) => [...prevState, newArticle]);
-    history.push("/articles");
+    history.push("/");
   };
 
   const handleDelete = async (id) => {

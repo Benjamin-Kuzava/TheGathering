@@ -148,7 +148,7 @@ export default function TabBar(props) {
         <Grid container spacing={4}>
           <Grid item xs={12} container justify="space-between">
             <FormControl className={classes.formControl}>
-              <InputLabel id="select-label">Category</InputLabel>
+              <InputLabel id="select-label">Filter Categories</InputLabel>
               <Select
                 labelId="select-label"
                 id="simple-select"

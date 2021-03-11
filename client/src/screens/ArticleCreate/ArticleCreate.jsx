@@ -30,7 +30,7 @@ const ArticleCreate = (props) => {
     summary: "",
   });
 
-  const { title, img_url, summary, handleCreate } = formData;
+  const { title, img_url, summary } = formData;
   const classes = useStyles();
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
@@ -61,7 +61,7 @@ const ArticleCreate = (props) => {
           className="create-form"
           onSubmit={(e) => {
             e.preventDefault();
-            handleCreate(formData);
+            props.handleCreate(formData);
           }}
         >
           <TextField

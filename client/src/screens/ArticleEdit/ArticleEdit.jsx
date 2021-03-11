@@ -46,13 +46,7 @@ const ArticleEdit = (props) => {
   });
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const {
-    handleUpdate,
-    handleDelete,
-    handleCategoryAdd,
-    articles,
-    categories,
-  } = props;
+  const { handleUpdate, handleDelete, articles, categories } = props;
   const { title, content, img_url, summary } = formData;
   const history = useHistory();
   const { id } = useParams();
@@ -61,16 +55,13 @@ const ArticleEdit = (props) => {
   useEffect(() => {
     const prefillFormData = () => {
       const article = articles.find((article) => article.id === Number(id));
+      setRichText(article.content);
       setformData({
         title: article.title,
         content: article.content,
         img_url: article.img_url,
         summary: article.summary,
       });
-      const category = categories.find(
-        (category) => category.name === article.categories[0].name
-      );
-      setSelectedCategory(category.name);
     };
     if (articles.length) prefillFormData();
   }, [articles, id]);
@@ -98,12 +89,12 @@ const ArticleEdit = (props) => {
     setSelectedCategory(event.target.value);
   };
 
-  const handleCategoryAddition = () => {
-    const category = categories.find(
-      (category) => category.name === selectedCategory
-    );
-    handleCategoryAdd(category.id, id);
-  };
+  // const handleCategoryAddition = () => {
+  //   const category = categories.find(
+  //     (category) => category.name === selectedCategory
+  //   );
+  //   handleCategoryAdd(category.id, id);
+  // };
 
   return (
     <Grid container spacing={4} justify="center" className={classes.container}>
@@ -177,16 +168,18 @@ const ArticleEdit = (props) => {
               variant="outlined"
               color="secondary"
               className={classes.buttonTwo}
-              onClick={() => handleCategoryAddition()}
+              // onClick={() => handleCategoryAddition()}
             >
               Add Category
             </Button>
           </Grid>
-          <CKEditor
-            editor={ClassicEditor}
-            onChange={handleRTChange}
-            data={content}
-          />
+          {content && (
+            <CKEditor
+              editor={ClassicEditor}
+              onChange={handleRTChange}
+              data={content}
+            />
+          )}
           <Grid
             item
             container

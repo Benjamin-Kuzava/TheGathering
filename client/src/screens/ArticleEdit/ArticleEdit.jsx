@@ -67,6 +67,10 @@ const ArticleEdit = (props) => {
         img_url: article.img_url,
         summary: article.summary,
       });
+      const category = categories.find(
+        (category) => category.name === article.categories[0].name
+      );
+      setSelectedCategory(category.name);
     };
     if (articles.length) prefillFormData();
   }, [articles, id]);

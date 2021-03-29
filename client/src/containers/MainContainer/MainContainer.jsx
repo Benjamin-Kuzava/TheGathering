@@ -17,7 +17,7 @@ import {
 import "./MainContainer.css";
 
 const MainContainer = (props) => {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(Array(12).fill(0));
   const [categories, setCatories] = useState([]);
   const history = useHistory();
 

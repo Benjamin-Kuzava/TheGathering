@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import { UserContext } from "../../utilities/UserContext";
 import {
   capitalize,
+  CircularProgress,
   Divider,
   Fab,
   FormControl,
@@ -138,7 +139,11 @@ export default function TabBar(props) {
       <TabPanel value={value} index={0}>
         <Grid container spacing={4}>
           <Grid item xs={12} container justify="center">
-            <Typography variant="h5">Latest Articles</Typography>
+            {articles[0].title ? (
+              <Typography variant="h5">Latest Articles</Typography>
+            ) : (
+              <CircularProgress />
+            )}
           </Grid>
           <Divider className={classes.divider} />
           {articles.map((article) => (
